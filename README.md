@@ -32,7 +32,9 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 # extra info
-- db.sqlite3 contains sample data used during development 
+- db.sqlite3 contains sample data used during development
 - like functionality might not work appropriately at the moment. Work in progress
-
 - Feel free to contribute
+
+Snippet of the website
+ <img width="945" alt="food-app-GH" src="https://user-images.githubusercontent.com/93333555/215263359-dda0709d-387d-4960-9eed-81f14c54340b.png">
