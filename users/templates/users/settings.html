@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Settings Page
+{% endblock title %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-3 d-flex flex-column">
+                <div class="list-group">
+                    <a href="{% url 'edit_user' %}" class="list-group-item list-group-item-action">Edit user</a>
+                    <a href="{% url 'delete_user' %}" class="list-group-item list-group-item-action">Delete user</a> 
+                  </div>
+            </div>
+            <div class="col-md-5 offset-md-1 border border-secondary-subtle rounded px-5 py-3">
+                {% block settings-form %}
+                <h3>Account Settings</h3>
+                {% endblock settings-form %}
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock content %}

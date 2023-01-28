@@ -1,0 +1,22 @@
+/* .food-name{
+    color: black;
+    font-size: 20px;
+} */
+/* .favorites-card{
+    background-color: blue;
+    border: 2px solid black;
+    border-radius: 10px;
+    position: fixed;
+    top: 20%;
+    right: 10%;
+    padding: 100px 10px;
+} */
+.food-img{
+    width: 200px;
+    height: 200px;
+}
+@media screen and (max-width: 992px){
+    .favorites-card {
+        display: none;
+    }
+}

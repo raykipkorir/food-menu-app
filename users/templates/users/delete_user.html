@@ -1,0 +1,10 @@
+{% extends 'users/settings.html' %}
+
+{% block settings-form %}
+{{ block.super }}
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit"  class="btn btn-danger">Delete user</button>
+</form>
+<p>This action is irreversible</p>
+{% endblock settings-form %}

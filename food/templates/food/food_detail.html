@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Food
+{% endblock title %}
+{% block content %}
+<div class="row">
+   <div class="col-md-4 offset-md-4 my-2 py-5 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-dark border-opacity-25 d-flex flex-row"
+        style="min-width: 300px;"
+   >  
+   <a href="{% url 'food' food.id %}">
+      {% if food.food_pic %}
+          <img src="{{ food.food_pic.url }}" alt="" class="img-thumbnail food-img h-100">
+        {% else %}
+        {% comment %} default food pic {% endcomment %}
+        <img 
+        src="{% static 'images/food_default.png' %}" 
+        alt="" 
+        class="img-thumbnail food-img h-100"
+        >
+        {% endif %}
+   </a>
+      <div name="food-card" class="d-flex flex-column ps-5 pt-2">
+         <div class="mb-4">
+            <span 
+               id="food" 
+               class="fw-bold text-decoration-none"
+               >
+               <a href="{% url 'food' food.id %}" class="text-reset">{{ food }}</a>
+            </span>
+         </div>
+         <div>
+            <span class="fw-bold">{{ food.food_price }}</span>
+         </div>
+         <div>
+            <span class="fw-bold">By <a href="{% url 'user_profile' food.user.username%}">{{ food.user.username }}</a></span>
+         </div>
+         <i id="like" class="fa-heart" type="button"></i>
+         <span id="num-likes" ></span>
+      </div>
+   </div>
+   
+</div>
+{% if user == food.user %}
+<div class="row">
+  <div class="col-md-4 offset-md-4 d-flex flex-row">
+    <a href="{% url 'food_update' food.id%}" class="btn btn-primary me-2">Edit food</a>
+    <form action="{% url 'food_delete' food.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete food</button>
+    </form>
+  </div>
+</div>
+{% endif %}
+
+{% endblock content %}

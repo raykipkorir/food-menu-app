@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}All foods{% endblock title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2">
+    {% for category in categories %}
+      <a href="{% url 'foods' %}?category={{ category.name }}" class="btn btn-primary my-2">{{ category }}</a>
+    {% endfor %}
+  </div>
+  <div class="col-md-8">
+    <div class="col-md-5 offset-md-3">
+      <form action="{% url 'search' %}" class="d-flex " role="search" method="GET">
+        <input class="form-control me-2 mt-3" type="search" placeholder="Search for food" aria-label="Search" name="query">
+        <button class="btn btn-outline-warning mt-3">Search</button>
+      </form>
+    </div>
+  
+  <div class="row row-cols-2">
+    {% if foods %}
+    {% for food in foods %}
+    <div class="col-md-5 my-2 py-5 ms-2 me-2 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-dark border-opacity-25 d-flex flex-row" style="min-width: 300px;">
+      <a href="{% url 'food' food.id %}">
+        {% if food.food_pic %}
+          <img src="{{ food.food_pic.url }}" alt="" class="img-thumbnail food-img h-100">
+        {% else %}
+        {% comment %} default food pic {% endcomment %}
+        <img 
+        src="{% static 'images/food_default.png' %}" 
+        alt="" 
+        class="img-thumbnail food-img h-100"
+        >
+        {% endif %}
+      </a>
+      <div name="food-card" class="d-flex flex-column ps-5 pt-2">
+        <div class="mb-4">
+          <span id="food" class="fw-bold text-decoration-none"><a href="{% url 'food' food.id %}" class="text-reset">{{ food }}</a></span>
+        </div>
+        <div>
+          <span class="fw-bold">{{ food.food_price }}</span>
+        </div>
+        <div>
+          <span class="fw-bold">By <a href="{% url 'user_profile' food.user.username%}">{{ food.user.username }}</a></span>
+        </div>
+        <i id="like" class="fa-heart" type="button"></i>
+        <span id="num-likes" ></span>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3>No food to show</h3>
+    {% endif %}
+    
+  </div>
+</div>
+</div>
+{% endblock content %}
