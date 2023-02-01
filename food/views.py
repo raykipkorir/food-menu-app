@@ -27,6 +27,9 @@ class AllFoods(ListView):
         if 'category' in self.request.GET:
             category = self.request.GET.get("category")
             foods = Food.objects.filter(category__name=category)
+        elif 'tag' in self.request.GET:
+            tag = self.request.GET.get("tag")
+            foods = Food.objects.filter(tags__name=tag)
         else:
             foods = Food.objects.all()
         return foods
@@ -55,10 +58,11 @@ class FoodAddView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         food = form.save(commit=False)
-        print(food.food_pic)
         food.user = self.request.user
-        return super().form_valid(form)
-
+        food.save()
+        form.save_m2m()
+        # return  super().form_valid(form)
+        return redirect("food", pk=food.pk)
 
 @login_required()
 def food_delete_view(request, pk):

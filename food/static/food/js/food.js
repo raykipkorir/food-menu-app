@@ -5,7 +5,7 @@ foodCards.forEach((foodCard) => {
   const food = foodCard.querySelector("#food");
   const numberOfLikes = foodCard.querySelector("#num-likes");
   const like = foodCard.querySelector("#like");
-  let foodName = food.innerText;
+  let foodName = food.textContent;
   let likeStatus = localStorage.getItem(`${foodName} like status`);
   if (likeStatus === "regular" || likeStatus == null) {
     like.classList.add("fa-regular");

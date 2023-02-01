@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "corsheaders",
+    "taggit",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -151,4 +152,8 @@ LOGIN_URL = "/login/"
 # email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+#allowed origins
 CORS_ALLOW_ALL_ORIGINS = True
+
+#taggit
+TAGGIT_CASE_INSENSITIVE = True

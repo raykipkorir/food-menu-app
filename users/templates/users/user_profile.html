@@ -1,108 +1,109 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}
 User Profile
 {% endblock title %}
-
 {% block content %}
 <div class="row">
-    <div class="col-md-8 offset-md-2">
-        <div class="row">
-            <div class="col-md-3 offset-md-4">
+   <div class="col-md-8 offset-md-2">
+      <div class="row">
+         <div class="col-md-3 offset-md-4">
             {% if user_profile.profile_pic %}
-              <img 
-              src="{{ user_profile.profile_pic.url }}" 
-              alt="" 
-              class="img-fluid"
-              style="border-radius:100px;"
-              >
+            <img 
+               src="{{ user_profile.profile_pic.url }}" 
+               alt="" 
+               class="img-fluid"
+               style="border-radius:100px;"
+               >
             {% else %}
-              {% comment %} default profile pic {% endcomment %}
-              <img 
-              src="{% static 'images/profile_default.jpg' %}" 
-              alt="" 
-              class="img-fluid"
-              style="border-radius:100px;"
-              >
-              {% endif %}
-        </div>
-        </div>
-        {% if request.user == user_profile.user %}
-            <a href="{% url 'edit_profile' %}" class="btn btn-primary mb-1">Edit profile</a>
-        {% endif %}
-        
-        <div>
-            {% if user_profile.bio %}
-                <p>Bio: {{ user_profile.bio }}</p>        
+            {% comment %} default profile pic {% endcomment %}
+            <img 
+               src="{% static 'images/profile_default.jpg' %}" 
+               alt="" 
+               class="img-fluid"
+               style="border-radius:100px;"
+               >
             {% endif %}
-            {% if user_profile.location%}
-                <p>Location: {{ user_profile.location }}</p> 
-            {% endif %}
-            {% if user_profile.twitter%}
-                <a href="{{user_profile.twitter}}"><i class="fa-brands fa-twitter"></i></a>
-            {% endif %}
-        </div>
-        {% if request.user == user_profile.user %}
-            <a href="{% url 'food_add' %}" class="btn btn-primary">Add food</a> <br><br>
-        {% endif %}
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a 
-                class="nav-link {% if tab == "foods" %}active{% endif %}" 
-                aria-current="page" 
-                href="{% url 'user_profile' user_profile.user.username %}?tab=foods">
-                Foods
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link {% if tab == "liked-foods" %}active{% endif %}" 
-                href="{% url 'user_profile' user_profile.user.username %}?tab=liked-foods">
-                Liked foods
-              </a>
-            </li>
-        </ul>
-    <div class="row row-cols-2">
-        {% if foods %}
-        {% for food in foods %}
-        <div class="col-md-5 my-2 py-5 ms-2 me-2 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-dark border-opacity-25 d-flex flex-row" 
+         </div>
+      </div>
+      {% if request.user == user_profile.user %}
+      <a href="{% url 'edit_profile' %}" class="btn btn-primary mb-1">Edit profile</a>
+      {% endif %}
+      <div>
+         {% if user_profile.bio %}
+         <p>Bio: {{ user_profile.bio }}</p>
+         {% endif %}
+         {% if user_profile.location%}
+         <p>Location: {{ user_profile.location }}</p>
+         {% endif %}
+         {% if user_profile.twitter%}
+         <a href="{{user_profile.twitter}}"><i class="fa-brands fa-twitter"></i></a>
+         {% endif %}
+      </div>
+      {% if request.user == user_profile.user %}
+      <a href="{% url 'food_add' %}" class="btn btn-primary">Add food</a> <br><br>
+      {% endif %}
+      <ul class="nav nav-tabs">
+         <li class="nav-item">
+            <a 
+            class="nav-link {% if tab == "foods" %}active{% endif %}" 
+            aria-current="page" 
+            href="{% url 'user_profile' user_profile.user.username %}?tab=foods">
+            Foods
+            </a>
+         </li>
+         <li class="nav-item">
+            <a
+            class="nav-link {% if tab == "liked-foods" %}active{% endif %}" 
+            href="{% url 'user_profile' user_profile.user.username %}?tab=liked-foods">
+            Liked foods
+            </a>
+         </li>
+      </ul>
+      <div class="row row-cols-2">
+         {% if foods %}
+         {% for food in foods %}
+         <div class="col-md-5 my-2 py-5 ms-2 me-2 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-dark border-opacity-25 d-flex flex-row position-relative" 
             style="min-width: 300px;"
-        >
-        <a href="{% url 'food' food.id %}">
-        {% if food.food_pic %}
-          <img src="{{ food.food_pic.url }}" alt="" class="img-thumbnail food-img h-100">
-        {% else %}
-        {% comment %} default food pic {% endcomment %}
-        <img 
-            src="{% static 'images/food_default.png' %}" 
-            alt="" 
-            class="img-thumbnail food-img h-100"
             >
-        {% endif %}
-        </a>
-        <div name="food-card" class="d-flex flex-column ps-5 pt-2">
-            <div class="mb-4">
-            <span id="food" class="fw-bold text-decoration-none">
-                <a href="{% url 'food' food.id %}" class="text-reset">{{ food }}</a>
-            </span>
+            <a href="{% url 'food' food.id %}">
+            {% if food.food_pic %}
+            <img src="{{ food.food_pic.url }}" alt="" class="img-thumbnail food-img h-100">
+            {% else %}
+            {% comment %} default food pic {% endcomment %}
+            <img 
+               src="{% static 'images/food_default.png' %}" 
+               alt="" 
+               class="img-thumbnail food-img h-100"
+               >
+            {% endif %}
+            </a>
+            <div name="food-card" class="d-flex flex-column ps-5 pt-2">
+               <div class="mb-4">
+                  <span id="food" class="fw-bold text-decoration-none">
+                  <a href="{% url 'food' food.id %}" class="text-reset">{{ food }}</a>
+                  </span>
+               </div>
+               <div>
+                  <span class="fw-bold">{{ food.food_price }}</span>
+               </div>
+               <div>
+                  <span class="fw-bold">By <a href="{% url 'user_profile' food.user.username %}">{{ food.user.username }}</a></span>
+               </div>
+               <i id="like" class="fa-heart" type="button"></i>
+               <span id="num-likes" ></span>
             </div>
-            <div>
-            <span class="fw-bold">{{ food.food_price }}</span>
+            <div class="position-absolute start-0 bottom-0 m-2">
+                {% for tag in food.tags.all %}
+                <a href="{% url 'foods' %}?tag={{ tag.name }}" class="btn btn-secondary btn-sm mt-1">{{ tag }}</a>
+                {% endfor %}
             </div>
-            <div>
-            <span class="fw-bold">By <a href="{% url 'user_profile' food.user.username %}">{{ food.user.username }}</a></span>
-            </div>
-            <i id="like" class="fa-heart" type="button"></i>
-            <span id="num-likes" ></span>
-        </div>
-        </div>
-        {% endfor %}
-        {% else %}
-        <h3>No food to show</h3>
-        {% endif %}
-        
-    </div>
-    </div>
-    </div>
+         </div>
+         {% endfor %}
+         {% else %}
+         <h3>No food to show</h3>
+         {% endif %}
+      </div>
+   </div>
+</div>
 {% endblock content %}
