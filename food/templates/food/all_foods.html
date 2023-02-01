@@ -21,7 +21,9 @@
   <div class="row row-cols-2">
     {% if foods %}
     {% for food in foods %}
-    <div class="col-md-5 my-2 py-5 ms-2 me-2 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-dark border-opacity-25 d-flex flex-row" style="min-width: 300px;">
+    <div class="col-md-5 my-2 py-5 ms-2 me-2 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-dark border-opacity-25 d-flex flex-row position-relative" 
+      style="min-width: 300px;"
+    >
       <a href="{% url 'food' food.id %}">
         {% if food.food_pic %}
           <img src="{{ food.food_pic.url }}" alt="" class="img-thumbnail food-img h-100">
@@ -46,6 +48,11 @@
         </div>
         <i id="like" class="fa-heart" type="button"></i>
         <span id="num-likes" ></span>
+      </div>
+      <div class="position-absolute start-0 bottom-0 m-2">
+          {% for tag in food.tags.all %}
+          <a href="{% url 'foods' %}?tag={{ tag.name }}" class="btn btn-secondary btn-sm mt-1">{{ tag }}</a>
+          {% endfor %}
       </div>
     </div>
     {% endfor %}
