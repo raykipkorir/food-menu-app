@@ -24,7 +24,7 @@
     <div class="col-md-5 my-2 py-5 ms-2 me-2 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-dark border-opacity-25 d-flex flex-row position-relative" 
       style="min-width: 300px;"
     >
-      <a href="{% url 'food' food.id %}">
+      <a href="{% url 'food_detail' food.id %}">
         {% if food.food_pic %}
           <img src="{{ food.food_pic.url }}" alt="" class="img-thumbnail food-img h-100">
         {% else %}
@@ -38,7 +38,7 @@
       </a>
       <div name="food-card" class="d-flex flex-column ps-5 pt-2">
         <div class="mb-4">
-          <span id="food" class="fw-bold text-decoration-none"><a href="{% url 'food' food.id %}" class="text-reset">{{ food }}</a></span>
+          <span id="food" class="fw-bold text-decoration-none"><a href="{% url 'food_detail' food.id %}" class="text-reset">{{ food }}</a></span>
         </div>
         <div>
           <span class="fw-bold">{{ food.food_price }}</span>
