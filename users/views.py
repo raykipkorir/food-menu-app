@@ -20,7 +20,7 @@ def sign_up(request):
                 messages.success(request, "Account created successfully")
                 return redirect("foods")
         return render(request, "users/sign_up.html", {"form": form})
-    else: 
+    else:
         return redirect("foods")
 
 
@@ -38,7 +38,7 @@ def profile(request, username):
     return render(request, "users/user_profile.html", {"user_profile":user_profile, "foods":foods, "tab":tab})
 
 
-@login_required()
+@login_required
 def edit_profile(request):
     profile = UserProfile.objects.get(user=request.user)
     form = UserProfileForm(instance=profile)
@@ -47,9 +47,8 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Profile updated successfully")
-            return redirect("user_profile", username=profile.user.username)
-    else:
-        return render(request, "users/edit_profile.html", {"form": form})
+            return redirect("user_profile", username=profile.user.username, permanent=False)
+    return render(request, "users/edit_profile.html", {"form": form})
 
 
 @login_required()
