@@ -8,7 +8,7 @@ Food
    <div class="col-md-4 offset-md-4 my-2 py-5 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-dark border-opacity-25 d-flex flex-row position-relative"
         style="min-width: 300px;"
    >  
-      <a href="{% url 'food' food.id %}">
+      <a href="{% url 'food_detail' food.id %}">
          {% if food.food_pic %}
             <img src="{{ food.food_pic.url }}" alt="" class="img-thumbnail food-img h-100">
          {% else %}
@@ -26,7 +26,7 @@ Food
                id="food" 
                class="fw-bold text-decoration-none"
                >
-               <a href="{% url 'food' food.id %}" class="text-reset">{{ food }}</a>
+               <a href="{% url 'food_detail' food.id %}" class="text-reset">{{ food }}</a>
             </span>
          </div>
          <div>

@@ -62,7 +62,7 @@ class FoodAddView(LoginRequiredMixin, CreateView):
         food.save()
         form.save_m2m()
         # return  super().form_valid(form)
-        return redirect("food", pk=food.pk)
+        return redirect("food_detail", pk=food.pk)
 
 @login_required()
 def food_delete_view(request, pk):
