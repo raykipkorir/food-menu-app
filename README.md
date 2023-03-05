@@ -1,12 +1,13 @@
 # Food-menu-app
-## Project information
-Backend - Python Django\
-Frontend - HTML CSS JS
+![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+
+[![Django CI](https://github.com/raykipkorir/food-menu-app/actions/workflows/django.yml/badge.svg?event=push)](https://github.com/raykipkorir/food-menu-app/actions/workflows/django.yml)
 
 # SETUP
 * In your working directory clone the repository:
 ```
-git clone https://github.com/raykipkorir/food-menu-app
+git clone https://github.com/raykipkorir/food-menu-app.git
 ```
 * Navigate into the repository 
 ```
